@@ -15,6 +15,7 @@ const Orders = () => {
             setOrder(data)
         })
     }, [_id]);
+    
 
     const handleDelete = () => {
         console.log('Delete the product');
