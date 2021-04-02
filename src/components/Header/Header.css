@@ -1,0 +1,31 @@
+.header{
+    text-align: center;
+  
+}
+.header img {
+    height: 80px;
+    /* width: 200px; */
+}
+.header nav{
+    background: #000;
+    line-height: 40px;
+    text-align: right;
+    
+}
+nav a{
+    text-decoration: none;
+    color: #fff;
+    margin: 10px;
+    padding: 5px;
+    transition: all linear .5s;
+}
+nav a:hover{
+    background: gray;
+}
+
+.shop-header{
+    font-weight: bold;
+    color:#fff;
+    margin-top: 15px;
+    font-size: 40px;
+}

@@ -1,24 +1,58 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Home from './components/Home/Home';
+import Header from './components/Header/Header';
+import AddFood from './components/AddFood/AddFood';
+import Login from './components/Login/Login';
+import NoMatch from './components/NoMatch/NoMatch';
+import Checkout from './components/Checkout/Checkout';
+import { useState } from 'react';
+import { createContext } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
+export const UserContext = createContext();
 function App() {
+  const [signInUser, setSignInUser] = useState({})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value = {[signInUser,setSignInUser]}>
+    <p>User email: {signInUser.email}</p>
+     <Router>
+        <Header></Header>
+        <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <PrivateRoute path="/admin">
+            <AddFood />
+          </PrivateRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/ViewFood/:id">
+            <Checkout />
+          </Route>
+          <PrivateRoute path="/checkout/:_id">
+            <Checkout/>
+          </PrivateRoute>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path= "*">
+            <NoMatch/>
+          </Route>
+        </Switch>
+      </Router>
+    </UserContext.Provider>
+
+     
+
+  
   );
 }
 

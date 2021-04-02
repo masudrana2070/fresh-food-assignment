@@ -1,0 +1,13 @@
+.product-design{
+    background: orangered;
+    height: 500px;
+    color: white;
+    text-align: center;
+}
+.admin{
+    box-shadow: 5px 5px 10px gray;
+    padding: 40px 200px;
+    margin:5px;
+    
+
+}
