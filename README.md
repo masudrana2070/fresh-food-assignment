@@ -6,4 +6,4 @@ In the client part I first create fake data and then put into the database Mongo
 ####
 Then create a private route in Admin panel and login panel in order to add product.
 ####
-I also put private route in the home menu **##BUY NOW** button so that it will login and then go to the check out option. The checkout section is not working properly. Because it shows only ID not the product name or price. 
+I also put private route in the home menu **##BUY NOW** button so that it will login and then go to the check out option. The checkout section is  working properly. 
