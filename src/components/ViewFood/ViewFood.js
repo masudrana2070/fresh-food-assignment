@@ -1,14 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import './ViewFood.css'
 
 const ViewFood = ({food}) => {
 
-    const [item, setItem] = useState([]);
+    // const [item, setItem] = useState([]);
     const {_id} = food;
-    const history = useHistory();
+    let history = useHistory();
     const handleBuy =(_id)=>{
         // const url = `/foods/${_id}`;
         history.push(`/checkout/${_id}`);

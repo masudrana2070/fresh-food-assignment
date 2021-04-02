@@ -11,7 +11,7 @@ const Home = () => {
      const [foods, setFoods] = useState([])
 
      useEffect(()=>{
-        fetch('http://localhost:5055/foods')
+        fetch('https://agile-citadel-44655.herokuapp.com/foods')
         .then(res=>res.json())
         .then(data=>setFoods(data))
      }, [])

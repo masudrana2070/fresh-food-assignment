@@ -20,7 +20,7 @@ const AddFood = () => {
             imageURL: imageURL
         };
 
-        const url = `http://localhost:5055/addFoods`;
+        const url = `https://agile-citadel-44655.herokuapp.com/addFoods`;
     // console.log(eventData);
 
     fetch(url, {
@@ -56,14 +56,14 @@ const AddFood = () => {
 <Container>
     <Row>
     <Col className="col-md-3 product-design mt-5">
-                    <h5  className="pb-4" style={{cursor: 'pointer'}}>Manage Product</h5>
-                    <h5 className="pb-4"  style={{cursor: 'pointer'}}>Add Product</h5>
+                    <h5  className="pb-2" style={{cursor: 'pointer'}}>Manage Product</h5>
+                    <h5 className="pb-2"  style={{cursor: 'pointer'}}>Add Product</h5>
                     <h5 style={{cursor: 'pointer'}}>Edit Product</h5>
                 </Col>
 
     <Col className="col-md-9 mt-5">
         <div className = "admin">
-        <h4>Add Product by Administrator</h4>       
+        <h4>Add Product</h4>       
     <form onSubmit={handleSubmit(onSubmit)}>
    
       <input name="name" placeholder= "ProductName" ref={register} />

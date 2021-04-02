@@ -1,35 +1,75 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router';
+// import { Button } from 'bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Container } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import { useHistory, useParams } from 'react-router';
+import { UserContext } from '../../App';
 import './Checkout.css'
 
 const Checkout = () => {
-
     const {_id} = useParams();
-    const [food , setFood] = useState([]);
+    
+    // const {_id, name, price} = {food}
+    const [product, setProduct] = useState([]);
+    useEffect(()=>{
+        fetch(`https://agile-citadel-44655.herokuapp.com/foods/${_id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setProduct(data)
+        })
+    }, []);
 
-    useEffect(() =>{
-        const url = `http://localhost:5055/addProduct/${_id}`
-        fetch(url)
-        .then(res=>res.json())
-        .then(data=> setFood(data))
-    }, [_id])
+    // Context from app.js
+  // const [signInUser, setSignInUser] = useContext(UserContext);
 
-    const { name, price} = food; 
-    return (
+  // React hook form for extra form validation and error message
+  // const { register, handleSubmit, errors } = useForm();
 
-        <Container>
-            <div className="admin">
-            <h1>This is checkout</h1>
-            <p>Product ID: {_id}</p>
-            <p>{name}</p>
-            <p>{price}</p>
-        </div>   
-        </Container>
- 
+  // handle redirected to user task
+  // let history = useHistory();
+  // function handleUserTask() {
+  //   history.push('/userDashboard');
+  // }
+
+  // When user registered send the data to server and redirect user to UserDashboard
+//  const onSubmit = (data) => {
+//    const newOrder = { ...data };
+  
+
+//    fetch('https://strawberry-cupcake-78732.herokuapp.com/addOrder', {
+//      method: 'POST',
+//      headers: { 'Content-Type': 'application/json' },
+//      body: JSON.stringify(newOrder),
+//    })
+//      .then((res) => res.json())
+//      .then((data) => {
+//        if (data) {
+//          handleUserTask();
+//        }
+//      });
+//  };
+let history = useHistory();
+const handleOrder = (_id) =>{
+  console.log('View Order')
+  history.push(`/orders/${_id}`);
+}
+       return (
+      <Container>
+          <div className="App mt-5 admin-form">
+            <h2>Check Product</h2>
+            {/* <h3>Name:{product._id} </h3> */}
+            {/* <p>Id: {_id}</p> */}
+            <h5>Name: {product.name}</h5>
+            <p><img className ="image" src={product.imageURL} alt=""/></p>
+            <p>Price: {product.price} SEK</p>
+            <Button variant="primary" onClick={()=>handleOrder(_id)}>Show Orders</Button>{' '}
+            <Button variant="success">Pay Now</Button>{' '}
+        </div>
+      </Container>
     );
 };
 
 export default Checkout;
+
+
