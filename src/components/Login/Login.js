@@ -5,8 +5,11 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { useHistory, useLocation } from 'react-router';
 import { useContext } from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { UserContext } from '../../App';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 
 const Login = () => {
 
@@ -15,7 +18,7 @@ const Login = () => {
     }
     // const [user, setUser] = useState({});
 
-    let history = useHistory();
+  let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
   
@@ -24,10 +27,10 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
 
-        firebase.auth()
+  firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
-  
+  // const {displayName,email} = result.user;
     var user = result.user;
    setSignInUser(user);
    history.replace(from);
@@ -44,8 +47,7 @@ const Login = () => {
     }
     return (
         <div className= "login">
-        <button className= "btn btn-primary"onClick = {handleGoogleSignIn}>Google Sign In</button>
-        <p>User email: {signInUser.email}</p>
+        <button className= "btn btn-primary rounded fw-bold" onClick = {handleGoogleSignIn}> <FontAwesomeIcon icon = {faGoogle}></FontAwesomeIcon> Google Sign In</button>
         </div>
     );
 };

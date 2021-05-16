@@ -11,7 +11,7 @@ const Home = () => {
      const [foods, setFoods] = useState([])
 
      useEffect(()=>{
-        fetch('https://agile-citadel-44655.herokuapp.com/foods')
+        fetch('http://localhost:5055/foods')
         .then(res=>res.json())
         .then(data=>setFoods(data))
      }, [])
@@ -23,7 +23,7 @@ const Home = () => {
 
         <div className ="row">
             {
-                foods.map(food =><ViewFood food={food}></ViewFood>)
+                foods.map(food =><ViewFood key = {food._id} food={food}></ViewFood>)
             }
         </div>
       </Container>

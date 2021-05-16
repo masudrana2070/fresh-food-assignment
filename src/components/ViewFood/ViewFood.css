@@ -1,3 +1,14 @@
 .margin{
     margin-left: 80px;
+    transition: all .3s ease;
+}
+.margin:hover{
+    background-color: salmon;
+    
+}
+
+.border-card {
+    border: 2px solid slategrey;
+    border-width: thin solid;
+    box-shadow: 4px 8px teal;
 }

@@ -1,36 +1,54 @@
 
-import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+// import { Button, Table } from 'react-bootstrap';
+
+import { UserContext } from '../../App';
+import OrderDetails from '../orderDetails/OrderDetails';
+import './Orders.css'
+
 
 const Orders = () => {
-    const {_id} = useParams();
-        const [order, setOrder] = useState([]);
-    useEffect(()=>{
-        fetch(`https://agile-citadel-44655.herokuapp.com/foods/${_id}`)
-        .then(res => res.json())
-        .then(data => {
-            // console.log(data)
-            setOrder(data)
-        })
-    }, [_id]);
-    
 
-    const handleDelete = () => {
-        console.log('Delete the product');
-    }
+    const[ orders, setOrders] = useState([]);
+    const[signInUser] = useContext(UserContext)
+
+    useEffect(()=>{
+        fetch("http://localhost:5055/orders?email="+ signInUser.email)
+        .then(res=>res.json())
+        .then(data=> setOrders(data))
+        .catch(err=>console.log(err))
+    },[signInUser.email])
+    
     return (
-      <Container>
-            <div className="App mt-5 admin-form">
-            {/* <h2>Order_id: {_id}</h2> */}
-            <h5>Order name: {order.name}</h5>
-            <p><img className="image" src={order.imageURL} alt=""/></p>
-            <p className="mb-5">Order price: {order.price} SEK</p>
-            <Button variant="danger" onClick={handleDelete}> Delete </Button>{' '}
-            {/* <Button variant="success" >Betala nu </Button>{' '} */}
+      <div className = "mt-5 container">
+          <h1 style ={{textAlign: "center"}}>Your Orders Here</h1>
+          <br />
+          <br />
+
+<div className = "container border bg-info fw-bold p-2 ">
+    <div className = "row" >
+        <div className = "col">
+            Email Address
         </div>
-      </Container>
+        <div className = "col">
+            Product Name
+        </div>
+        <div className = "col">
+            Price
+        </div>
+        <div className = "col">
+            Date
+        </div>
+
+    </div>
+
+</div>
+         
+          {
+              orders.map(order=> <OrderDetails key = {order._id} order = {order}></OrderDetails>)
+          }
+          
+      </div>
     );
 };
 
