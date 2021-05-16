@@ -16,13 +16,14 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Orders from './components/Orders/Orders';
+import Admin from './components/Admin/Admin';
+import ManageProduct from './components/ManageProduct/ManageProduct';
 
 export const UserContext = createContext();
 function App() {
   const [signInUser, setSignInUser] = useState({})
   return (
     <UserContext.Provider value = {[signInUser,setSignInUser]}>
-    <p>User email: {signInUser.email}</p>
      <Router>
         <Header></Header>
         <Switch>
@@ -30,19 +31,25 @@ function App() {
             <Home />
           </Route>
           <PrivateRoute path="/admin">
+            <Admin />
+          </PrivateRoute>
+          <PrivateRoute path="/addFood">
             <AddFood />
+          </PrivateRoute>
+          <PrivateRoute path="/manageProduct">
+            <ManageProduct />
           </PrivateRoute>
           <Route path="/login">
             <Login />
           </Route>
-          {/* <Route path="/ViewFood/:id">
-            <Checkout />
-            </Route> */}
             <Route path="/orders/:_id">
             <Orders></Orders>
           </Route>
           <PrivateRoute path="/checkout/:_id">
             <Checkout/>
+          </PrivateRoute>
+          <PrivateRoute path="/orders">
+          <Orders />
           </PrivateRoute>
           <Route exact path="/">
             <Home />
