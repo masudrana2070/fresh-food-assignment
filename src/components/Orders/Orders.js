@@ -1,6 +1,5 @@
 
 import React, { useContext, useEffect, useState } from 'react';
-// import { Button, Table } from 'react-bootstrap';
 
 import { UserContext } from '../../App';
 import OrderDetails from '../orderDetails/OrderDetails';

@@ -20,7 +20,6 @@ const Home = () => {
     
     return (
       <Container>
-
         <div className ="row">
             {
                 foods.map(food =><ViewFood key = {food._id} food={food}></ViewFood>)

@@ -5,7 +5,6 @@ import { Link} from 'react-router-dom';
 import './ViewFood.css'
 
 const ViewFood = (props) => {
-
    
     const {food} = props
     const {_id, name, imageURL, price } = food;

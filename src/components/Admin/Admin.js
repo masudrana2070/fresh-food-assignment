@@ -20,7 +20,7 @@ const Admin = () => {
         </div>
         <Container>
             <h1 style={{ textAlign: "center"}}>
-                Welcome Admin
+                Welcome to Admin
             </h1>
         </Container>
     </div>

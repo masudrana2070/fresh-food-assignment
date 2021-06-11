@@ -27,7 +27,6 @@ const {name, email, price, date} = order;
 
 <button >Delete</button>
     </div> */}
-
 </div>
   
        

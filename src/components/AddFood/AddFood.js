@@ -24,7 +24,7 @@ const AddFood = () => {
         };
 
         const url = `http://localhost:5055/addFoods`;
-    // console.log(eventData);
+
 
     fetch(url, {
       method: 'POST',
